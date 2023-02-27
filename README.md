@@ -1,59 +1,25 @@
-Building / Execution: 
+: GroceryItem.java :
++ added -> line 17: GRAPEFRUIT('G', 0.50, "GrapeFruit"),//The new one 
++ modified line 27: public final char match; //Before it was String
+This modification is probably a better way, instead of String I decide to use char for item product.
++ Modified other lines eg, 44 to get String.valueOf when char is find it.
 
-    mvn package 
-      to build
+: ShoppingCart.java :
++eg, line 46 added String.valueOf for getting the String representation of a char
++ lines 65, 66 instead of int I decide to have a double variable for better precision in the cart.
 
-    java -jar ./target/fruitstand-1.0-SNAPSHOT.jar
-      to execute.
+: Discount.java :
+Lines 25, 39 the app return double instead of int. this was a decision for getting a better precision 
+Lines 18,19
+        //Apple, Orange, Banana, Grapefruit to 1.25
+        new Discount( 1.25, GRAPEFRUIT, APPLE, ORANGE, BANANA),
+I used the new discount directly get the price of 1.25 and it's the first one to execute so, when the cart is filled with that products there it goes for 1.25 
 
-Overview:
+: ShoppingCartMain.java :
++ line 46: double totalPrice instead of int totalPrice
++line 47: Instead of divide everytime by 100, I decide to have a double variable. and replace the line: 
+System.out.format("Price : %.02f", totalPrice); //* It was divided by 100 every time it calculates the result
 
-    This application simulates a fruit stand.  Currently, the fruit stand sells a total of
-    3 fruits with the following prices:
 
-        Apple:   0.60 
-        Orange:  0.25
-        Bannana: 0.20
 
-    Purchasing multiple fruits may results in a discount.  Currenly, the following
-    discounts are applied (in order, so eg, the same Apple won't be applied to multiple
-    discounts being taken): (price listed is the charged price)
 
-        2 x Bannana      = 0.20 
-        Bannana & Apple  = 0.20 
-        2 x Apple        = 0.60
-        3 x Orange       = 0.50
-
-Sample Run of application: 
-
-    Enter series of following to checkout items:
-    Discounts:
-          0.20 - [Bananna, Bananna]
-          0.20 - [Apple, Bananna]
-          0.60 - [Apple, Apple]
-          0.50 - [Orange, Orange, Orange]
-
-    Individual Items:
-      A - Apple                 0.60
-      O - Orange                0.25
-      B - Bananna               0.20
-      . - Done / Checkout and print total.
-    All other characters are ignored so, 'Apple Orange, Apple.' is valid.
-
-    (. to checkout) : > Apple, Apple, Bannana, Orange
-    (. to checkout) : > .
-    Shopping Cart: 
-     Apple Apple Bananna Orange
-    Price : 1.05
-
-   Note the price is 1.05 due to Apple, Bannana (0.20) + Apple (0.60) + Orange (0.25)
-
-Tasks:  (For consideration, code changes in a fork are nice but not required)
-
-    1. What improvements would you make in the existing code and why?
-
-    2. Add a new fruit, Grapefruit 'G' with a standard price of 0.50 and a discount of 
-       Apple, Orange, Banana, Grapefruit to 1.25.  This discount should be the first
-       discount applied. 
-   
-   
